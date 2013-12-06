@@ -1,7 +1,7 @@
-Accounts.oauth.registerService('trello');
+Accounts.oauth.registerService('angellist');
 
 if (Meteor.isClient) {
-  Meteor.loginWithTrello = function(options, callback) {
+  Meteor.loginWithAngelList = function(options, callback) {
     // support a callback without options
     if (! callback && typeof options === "function") {
       callback = options;
@@ -9,20 +9,20 @@ if (Meteor.isClient) {
     }
 
     var credentialRequestCompleteCallback = Accounts.oauth.credentialRequestCompleteHandler(callback);
-    Trello.requestCredential(options, credentialRequestCompleteCallback);
+    AngelList.requestCredential(options, credentialRequestCompleteCallback);
   };
 } else {
   var forLoggedInUserAutopublishedFields = _.map(
-    Trello.loggedInUserWhitelistedFields.concat(['id', 'fullName']),
+    AngelList.loggedInUserWhitelistedFields.concat(['id', 'fullName']),
     function (subfield) { 
-      return 'services.trello.' + subfield;
+      return 'services.angellist.' + subfield;
     }
   );
 
   var forOtherUsersAutopublishedFields = _.map(
-    Trello.otherUsersWhitelistedFields.concat(['id', 'fullName']),
+    AngelList.otherUsersWhitelistedFields.concat(['id', 'fullName']),
     function (subfield) { 
-      return 'services.trello.' + subfield;
+      return 'services.angellist.' + subfield;
     }
   );
 

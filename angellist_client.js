@@ -1,18 +1,18 @@
-Trello = {};
+AngelList = {};
 
-// Request Trello credentials for the user
+// Request AngelList credentials for the user
 // @param options {optional}  XXX support options.requestPermissions
 // @param credentialRequestCompleteCallback {Function} Callback function to call on
 //   completion. Takes one argument, credentialToken on success, or Error on
 //   error.
-Trello.requestCredential = function (options, credentialRequestCompleteCallback) {
+AngelList.requestCredential = function (options, credentialRequestCompleteCallback) {
   // support both (options, callback) and (callback).
   if (!credentialRequestCompleteCallback && typeof options === 'function') {
     credentialRequestCompleteCallback = options;
     options = {};
   }
 
-  var config = ServiceConfiguration.configurations.findOne({service: 'trello'});
+  var config = ServiceConfiguration.configurations.findOne({service: 'angellist'});
   if (!config) {
     credentialRequestCompleteCallback && credentialRequestCompleteCallback(new ServiceConfiguration.ConfigError("Service not configured"));
     return;
@@ -25,11 +25,11 @@ Trello.requestCredential = function (options, credentialRequestCompleteCallback)
 
   // url back to app, enters "step 2" as described in
   // packages/accounts-oauth1-helper/oauth1_server.js
-  var callbackUrl = Meteor.absoluteUrl('_oauth/trello?close&state=' + credentialToken);
+  var callbackUrl = Meteor.absoluteUrl('_oauth/angellist?close&state=' + credentialToken);
 
   // url to app, enters "step 1" as described in
   // packages/accounts-oauth1-helper/oauth1_server.js
-  var url = '/_oauth/trello/?requestTokenAndRedirect='
+  var url = '/_oauth/angellist/?requestTokenAndRedirect='
         + encodeURIComponent(callbackUrl)
         + '&state=' + credentialToken;
 

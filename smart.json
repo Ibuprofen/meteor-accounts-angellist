@@ -1,10 +1,10 @@
 {
-  "name": "accounts-trello",
-  "description": "Accounts Trello - adds support for Trello (requires 0.6.6 or later)",
-  "homepage": "https://github.com/robertlowe/meteor-accounts-trello",
-  "author": "Robert Lowe",
+  "name": "accounts-angellist",
+  "description": "Accounts AngelList - adds support for AngelList (requires 0.6.6 or later)",
+  "homepage": "https://github.com/chadokruse/meteor-accounts-angellist",
+  "author": "Chad Kruse via Robert Lowe",
   "version": "0.1.0",
-  "git": "https://github.com/robertlowe/meteor-accounts-trello.git",
+  "git": "https://github.com/chadokruse/meteor-accounts-angellist.git",
   "packages": {
   }
 }
