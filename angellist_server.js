@@ -1,10 +1,11 @@
 var querystring = Npm.require('querystring');
 
-Trello = {};
+AngelList = {};
 
 var urls = {
-  requestToken: "https://trello.com/1/OAuthGetRequestToken",
-  accessToken: "https://trello.com/1/OAuthGetAccessToken",
+  requestToken: "https://trello.com/1/OAuthGetRequestToken", // TODO
+  accessToken: "https://trello.com/1/OAuthGetAccessToken", // TODO
+
   authenticate: function(oauthBinding){
     var params = {}
 
@@ -20,12 +21,12 @@ var urls = {
 
     params['oauth_token'] = oauthBinding.requestToken;
 
-    return "https://trello.com/1/OAuthAuthorizeToken?" + querystring.stringify(params);
+    return "https://trello.com/1/OAuthAuthorizeToken?" + querystring.stringify(params); // TODO
   }
 };
 
 // https://api.trello.com/1/members/me
-Trello.otherUsersWhitelistedFields = [
+AngelList.otherUsersWhitelistedFields = [ //TODO
   "id",
   "avatarHash",
   "bio",
@@ -44,7 +45,7 @@ Trello.otherUsersWhitelistedFields = [
 ];
 
 // all of them
-Trello.loggedInUserWhitelistedFields = [
+AngelList.loggedInUserWhitelistedFields = [  // TODO
   "id",
   "avatarHash",
   "bio",
@@ -72,8 +73,8 @@ Trello.loggedInUserWhitelistedFields = [
   "uploadedAvatarHash"
 ];
 
-Oauth.registerService('trello', 1, urls, function(oauthBinding) {
-  var identity = oauthBinding.get('https://api.trello.com/1/members/me').data;
+Oauth.registerService('angellist', 1, urls, function(oauthBinding) {
+  var identity = oauthBinding.get('https://api.trello.com/1/members/me').data; // TODO
 
   var serviceData = {
     id: identity.id,
@@ -82,8 +83,8 @@ Oauth.registerService('trello', 1, urls, function(oauthBinding) {
     accessTokenSecret: oauthBinding.accessTokenSecret
   };
 
-  // include helpful fields from trello
-  var fields = _.pick(identity, Trello.loggedInUserWhitelistedFields);
+  // include helpful fields from angellist
+  var fields = _.pick(identity, AngelList.loggedInUserWhitelistedFields);
   _.extend(serviceData, fields);
 
   return {
@@ -97,6 +98,6 @@ Oauth.registerService('trello', 1, urls, function(oauthBinding) {
 });
 
 
-Trello.retrieveCredential = function(credentialToken) {
+AngelList.retrieveCredential = function(credentialToken) {
   return Oauth.retrieveCredential(credentialToken);
 };
